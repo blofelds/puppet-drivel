@@ -13,6 +13,7 @@ node host6 {
     include vmwaretools
     include ganglia::host::hadoop
     include hadoop::datanode
+    include users
 }
 
 node ganglia {
