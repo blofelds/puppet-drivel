@@ -1,4 +1,4 @@
-import '*.pp'
+import 'base.pp'
 
 node puppet {
     include base::infra
