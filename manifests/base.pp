@@ -14,5 +14,5 @@ class base::infra inherits base {
 
 class base::hadoop inherits base {
 
-    include ganglia::hosts::hadoop
+    include ganglia::host::hadoop
 }
