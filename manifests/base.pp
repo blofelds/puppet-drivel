@@ -5,6 +5,7 @@ class base {
     include ntp
     include vmwaretools
     include users
+    include man
 }
 
 class base::infra inherits base {
