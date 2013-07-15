@@ -15,6 +15,7 @@ node puppet {
 
 node host5 {
     include base::hadoop
+    include hadoop::datanode
 }
 
 node host6 {
