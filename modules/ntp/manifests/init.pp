@@ -17,7 +17,7 @@ class ntp {
     }
 
     exec { 'update date':
-        require => Package['ntp'],
+        require => File['ntp.conf'],
         command => '/usr/sbin/ntpdate infra1.org',
         onlyif  => "/etc/init.d/ntpd status | grep stopped"
     }
