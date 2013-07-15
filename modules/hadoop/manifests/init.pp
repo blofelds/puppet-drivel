@@ -108,17 +108,17 @@ class hadoop::datanode inherits hadoop {
     }
         
         
-#    service { 'hadoop-0.20-mapreduce-tasktracker':
-#        require => [Package['hadoop-0.20-mapreduce-tasktracker'],
-#            File[mapreddir]],
-#        ensure  => 'running',
-#    }
+    service { 'hadoop-0.20-mapreduce-tasktracker':
+        require => [Package['hadoop-0.20-mapreduce-tasktracker'],
+            File[mapreddir]],
+        ensure  => 'running',
+    }
 
-#    service { 'hadoop-hdfs-datanode':
-#        require => [Package['hadoop-hdfs-datanode'],
-#            File['datanodedir_1']],
-#        ensure  => 'running',
-#    }
+    service { 'hadoop-hdfs-datanode':
+        require => [Package['hadoop-hdfs-datanode'],
+            File['datanodedir_1']],
+        ensure  => 'running',
+    }
 }
 
 class hadoop::namenode inherits hadoop {
