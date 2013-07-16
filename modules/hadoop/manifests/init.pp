@@ -8,14 +8,12 @@ class hadoop {
 class hadoop::datanode inherits hadoop {
 
     package { 'hadoop-hdfs-datanode':
-        require => Package['jdk'],
-        require => User['hdfs'],
+        require => [Package['jdk'],User['hdfs']],
         ensure  => 'installed',
     }
     
     package { 'hadoop-0.20-mapreduce-tasktracker':
-        require => Package['hadoop-hdfs-datanode'],
-        require => User['mapred'],
+        require => [Package['jdk'],User['mapred']],
         ensure  => 'installed',
     }
 
@@ -31,10 +29,10 @@ class hadoop::datanode inherits hadoop {
         ensure      => 'present',
         gid         => 'hdfs',
         password    => '',
-        comment     => 'hdfs user',
+        comment     => "hdfs user",
         home        => '/home/hdfs',
         shell       => '/bin/bash',
-        managehome  => 'true',
+        managehome  => true,
     }
 
     user { 'mapred':
@@ -42,10 +40,10 @@ class hadoop::datanode inherits hadoop {
         ensure      => 'present',
         gid         => 'mapred',
         password    => '',
-        comment     => 'mapreduce user',
+        comment     => "mapreduce user",
         home        => '/home/mapred',
         shell       => '/bin/bash',
-        managehome  => 'true',
+        managehome  => true,
     }
 
     file { 
@@ -65,6 +63,14 @@ class hadoop::datanode inherits hadoop {
             owner   => 'hdfs',
             group   => 'hdfs',
             mode    => '0775',
+    }
+
+    file { 'mapredlogdir':
+        path    => "/var/log/hadoop-0.20-mapreduce",
+        ensure  => 'directory',
+        owner   => 'mapred',
+        group   => 'hdfs',
+        mode    => '0755',
     }
 
     file { 'datanodedir_1':
