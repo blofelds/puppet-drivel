@@ -7,18 +7,18 @@ class hadoop {
 
 class hadoop::datanode inherits hadoop {
 
-    package { 'hadoop-0.20-mapreduce-tasktracker':
-        require => Package['jdk'],
-        require => User['hdfs'],
-        ensure  => 'installed',
-    }
-
     package { 'hadoop-hdfs-datanode':
         require => Package['jdk'],
         require => User['mapred'],
         ensure  => 'installed',
     }
     
+    package { 'hadoop-0.20-mapreduce-tasktracker':
+        require => Package['hadoop-hdfs-datanode'],
+        require => User['hdfs'],
+        ensure  => 'installed',
+    }
+
     group { 
         'hdfs':
             ensure  => 'present';
