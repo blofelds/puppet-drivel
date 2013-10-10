@@ -13,6 +13,10 @@ node puppet {
     include base::infra
 }
 
+node nagios {
+    include base::infra
+}
+
 node host5 {
     include base::hadoop
     include hadoop::datanode
