@@ -15,7 +15,7 @@ class repos::all inherits repos {
     include repos::ganglia
     include repos::vmware-tools
 
-    $file_name      = [ "/etc/yum.repos.d/testfile", "/etc/yum.repos.d/CentOS-Base.repo", "/etc/yum.repos.d/CentOS-Debuginfo.repo", "/etc/yum.repos.d/CentOS-Media.repo", "/etc/yum.repos.d/CentOS-Vault.repo" ]
+    $file_name      = [  "/etc/yum.repos.d/CentOS-Base.repo", "/etc/yum.repos.d/CentOS-Debuginfo.repo", "/etc/yum.repos.d/CentOS-Media.repo", "/etc/yum.repos.d/CentOS-Vault.repo" ]
 
     file { $file_name:
       ensure        => 'absent',
