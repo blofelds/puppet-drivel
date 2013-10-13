@@ -4,6 +4,10 @@ node ganglia {
     include hosts
 }
 
+node nettest {
+    include base
+}
+
 node infra1 {
    # include base
     include git
