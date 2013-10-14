@@ -1,7 +1,8 @@
+# places hosts file
 class hosts {
     file { 'hosts':
-        path    => '/etc/hosts',
         ensure  => 'present',
+        path    => '/etc/hosts',
         source  => 'puppet:///modules/hosts/hostsfile',
         group   => 'root',
         owner   => 'root',
@@ -9,10 +10,11 @@ class hosts {
     }
 }
 
+# places minimal hosts file
 class securehosts {
     file { 'securehosts':
-        path    => '/etc/hosts',
         ensure  => 'present',
+        path    => '/etc/hosts',
         source  => 'puppet:///modules/hosts/securehostsfile',
         group   => 'root',
         owner   => 'root',

@@ -1,7 +1,8 @@
+# installs man pages
 class man {
 
     package { 'man':
-      require =>  Class['repos::all'],
       ensure  => 'installed',
+      require =>  Class['repos::all'],
     }
 }

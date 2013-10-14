@@ -5,11 +5,10 @@ node ganglia {
 }
 
 node nettest {
-    include base
 }
 
 node infra1 {
-   # include base
+  # include base
     include git
 }
 

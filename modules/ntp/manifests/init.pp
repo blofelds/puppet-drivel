@@ -1,15 +1,15 @@
-
+# installs ntp package, conf file and runs 'ntpdate' against infra1.org
 class ntp {
 
     package { 'ntp':
-        require => Class['repos::all'],
         ensure  => 'installed',
+        require => Class['repos::all'],
     }
 
     file { 'ntp.conf':
+        ensure  => 'present',
         require =>  Package['ntp'],
         path    => '/etc/ntp.conf',
-        ensure  => 'present',
         source  => 'puppet:///modules/ntp/ntp.conf',
         group   => 'root',
         owner   => 'root',
@@ -19,12 +19,12 @@ class ntp {
     exec { 'update date':
         require => File['ntp.conf'],
         command => '/usr/sbin/ntpdate infra1.org',
-        onlyif  => "/etc/init.d/ntpd status | grep stopped"
+        onlyif  => '/etc/init.d/ntpd status | grep stopped'
     }
 
 
     service { 'ntpd':
-        require => Exec['update date'],
         ensure  => running,
+        require => Exec['update date'],
     }
 }

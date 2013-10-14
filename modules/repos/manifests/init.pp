@@ -1,5 +1,6 @@
-class repos  {        
-    Yumrepo {         
+# sets class-wide variables for use in scope
+class repos  {
+    Yumrepo {
       require        => Class['hosts'],
       enabled         => '1',
       gpgcheck        => '0',
@@ -8,14 +9,18 @@ class repos  {
     }
 }
 
+# removes all CentOS repos, inherits all other repos
 class repos::all inherits repos {
-    
+
     include repos::tools
     include repos::java
     include repos::ganglia
-    include repos::vmware-tools
+    include repos::vmware_tools
 
-    $file_name      = [  "/etc/yum.repos.d/CentOS-Base.repo", "/etc/yum.repos.d/CentOS-Debuginfo.repo", "/etc/yum.repos.d/CentOS-Media.repo", "/etc/yum.repos.d/CentOS-Vault.repo" ]
+    $file_name      = [  '/etc/yum.repos.d/CentOS-Base.repo',
+    '/etc/yum.repos.d/CentOS-Debuginfo.repo',
+    '/etc/yum.repos.d/CentOS-Media.repo',
+    '/etc/yum.repos.d/CentOS-Vault.repo' ]
 
     file { $file_name:
       ensure        => 'absent',
@@ -24,13 +29,14 @@ class repos::all inherits repos {
 
 #not sure if infra box needs these repos or not
 class repos::infra inherits repos {
-    
+
     include repos::tools
     include repos::java
     include repos::ganglia
-    include repos::vmware-tools
+    include repos::vmware_tools
 }
 
+# installs ganglia repo
 class repos::ganglia {
 
     yumrepo { 'ganglia':
@@ -38,8 +44,9 @@ class repos::ganglia {
         baseurl     => 'http://infra1.org/repo/ganglia',
         descr       => 'ganglia repo',
     }
-}   
+}
 
+# installs java repo
 class repos::java {
 
     yumrepo { 'java':
@@ -49,6 +56,7 @@ class repos::java {
     }
 }
 
+# installs tools repo
 class repos::tools {
 
     yumrepo { 'tools':
@@ -58,10 +66,11 @@ class repos::tools {
     }
 }
 
-class repos::vmware-tools {
+# installs vmware_tools repo
+class repos::vmware_tools {
 
-    yumrepo { 'vmware-tools':
-        name        => 'vmware-tools',
+    yumrepo { 'vmware_tools':
+        name        => 'vmware_tools',
         baseurl     => 'http://infra1.org/repo/vmware-tools',
         descr       => 'vmware',
     }
