@@ -2,7 +2,7 @@
 class ntp {
 
     package { 'ntp':
-        require => Class['repos'],
+        require => Class['repos::all'],
         ensure  => 'installed',
     }
 

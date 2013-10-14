@@ -1,7 +1,7 @@
 class vmwaretools {
 
     package { 'vmware-tools':
-        require => Class['repos'],
+        require => Class['repos::all'],
         ensure => 'installed',
     }
 

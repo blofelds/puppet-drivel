@@ -1,6 +1,7 @@
 class man {
 
     package { 'man':
-      ensure => 'installed',
+      require =>  Class['repos::all'],
+      ensure  => 'installed',
     }
 }
