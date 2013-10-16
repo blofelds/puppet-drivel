@@ -5,6 +5,7 @@ node ganglia {
 }
 
 node nettest {
+  include ntp
 }
 
 node infra1 {
