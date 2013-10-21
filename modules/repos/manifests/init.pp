@@ -1,7 +1,6 @@
 # sets class-wide variables for use in scope
 class repos  {
     Yumrepo {
-      require        => Class['hosts'],
       enabled         => '1',
       gpgcheck        => '0',
       priority        => '1',
@@ -71,7 +70,7 @@ class repos::vmware_tools {
 
     yumrepo { 'vmware_tools':
         name        => 'vmware_tools',
-        baseurl     => 'http://infra1.org/repo/vmware-tools',
+        baseurl     => "http://{$infra_server}/repo/vmware-tools",
         descr       => 'vmware',
     }
 }

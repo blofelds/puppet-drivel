@@ -1,7 +1,7 @@
 # add various users
 class users {
 
-    user { 'root':
+      user { 'root':
       ensure     => 'present',
       gid        => '0',
       comment    => 'rooty root',

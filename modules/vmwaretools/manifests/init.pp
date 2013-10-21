@@ -3,7 +3,6 @@ class vmwaretools {
 
     package { 'vmware-tools':
         ensure  => 'installed',
-        require => Class['repos::all'],
     }
 
     service { 'vmware-tools':

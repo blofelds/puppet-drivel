@@ -1,11 +1,14 @@
+# installs hosts then repos then apps
 class base {
 
-    include hosts
-    include repos::all
-    include ntp
-    include vmwaretools
-    include users
-    include man
+    anchor { 'base::begin': } ->
+    class { '::users': } ->
+    class { '::hosts': } ->
+    class { '::repos::all': } ->
+    class { '::ntp': } ->
+    class { '::vmwaretools': } ->
+    class { '::man': } ->
+    anchor { 'base::end': }
 }
 
 # base class with ganglia group for infrastructure nodes

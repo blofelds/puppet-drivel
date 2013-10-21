@@ -5,7 +5,8 @@ node ganglia {
 }
 
 node nettest {
-  include ntp
+  $infra_server = localhost
+  include base
 }
 
 node infra1 {

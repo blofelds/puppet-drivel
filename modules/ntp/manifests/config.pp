@@ -3,7 +3,6 @@ class ntp::config inherits ntp {
 
   file { 'ntp.conf':
     ensure  => present,
-    require => Package['ntp'],
     path    => '/etc/ntp.conf',
     source  => 'puppet:///modules/ntp/ntp.conf',
     owner   => 'root',
@@ -13,7 +12,7 @@ class ntp::config inherits ntp {
 
 exec { 'update date':
   require => File['ntp.conf'],
-  command => '/usr/sbin/ntpdate infra1.org',
+  command => "/usr/sbin/ntpdate ($infra_server)",
   onlyif  => '/etc/init.d/ntpd status | grep stopped',
   }
 }
