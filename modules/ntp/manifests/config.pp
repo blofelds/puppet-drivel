@@ -12,7 +12,7 @@ class ntp::config inherits ntp {
 
 exec { 'update date':
   require => File['ntp.conf'],
-  command => "/usr/sbin/ntpdate ($infra_server)",
+  command => "/usr/sbin/ntpdate ${infra_server}",
   onlyif  => '/etc/init.d/ntpd status | grep stopped',
   }
 }
