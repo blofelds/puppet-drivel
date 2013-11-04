@@ -1,8 +1,7 @@
 # installs git package
 class git {
 
-    package { 'git':
-      ensure => 'installed',
-
-    }
+  anchor { 'git::begin': } ->
+  class { 'git::install': } ->
+  anchor { 'git::end': }
 }
