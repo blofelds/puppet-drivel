@@ -9,12 +9,18 @@ node nettest {
   include base
 }
 
+node vagtest {
+    $infra_server = 'infra1.org'
+    include base
+}
+
 node infra1 {
   # include base
     include git
 }
 
 node puppet {
+    $infra_server = 'infra1.org'
     include base::infra
 }
 
@@ -29,4 +35,8 @@ node host5 {
 
 node host6 {
     include base::hadoop
+}
+
+node 'gstest03.dev.devops.id.bskyb.com' {
+  include base
 }
