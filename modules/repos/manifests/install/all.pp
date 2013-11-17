@@ -6,8 +6,7 @@ class repos::install::all inherits repos {
     class { 'repos::java': } ->
     class { 'repos::ganglia': } ->
     class { 'repos::vmware_tools': } ->
-    class { 'repos::puppet3': } ->
-    class { 'repos::puppet3_deps': } ->
+    class { 'repos::puppet': } ->
     anchor { 'repos::install::all::end': }
 
     $file_name      = [  '/etc/yum.repos.d/CentOS-Base.repo',
