@@ -1,6 +1,7 @@
 import 'base.pp'
 
 node ganglia {
+    $infra_server = 'infra1.org'
     include hosts
 }
 
@@ -25,6 +26,7 @@ node puppet {
 }
 
 node nagios {
+    $infra_server = 'infra1.org'
     include base::infra
 }
 
