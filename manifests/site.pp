@@ -42,3 +42,8 @@ node host6 {
 node 'gstest03.dev.devops.id.bskyb.com' {
   include base
 }
+
+node gstest {
+    $infra_server = 'infra1.org'
+    include base
+}
