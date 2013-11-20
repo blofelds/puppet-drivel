@@ -3,7 +3,7 @@ class repos::puppet {
 
     yumrepo { 'puppet':
         name        => 'puppet',
-        baseurl     => 'http://infra1.org/repo/puppet',
+        baseurl     => "http://${infra_server}/repo/puppet",
         descr       => 'puppet',
     }
 }
