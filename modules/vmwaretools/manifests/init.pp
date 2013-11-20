@@ -5,6 +5,7 @@ class vmwaretools  (
 
   unless $offline == offline {
 
+  if $::is_vagrant == false {
     package { 'vmware-tools':
         ensure  => 'installed',
     }
@@ -14,4 +15,6 @@ class vmwaretools  (
         require => Package['vmware-tools'],
     }
   }
+
+  else {}
 }
