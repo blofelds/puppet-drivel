@@ -40,6 +40,6 @@ node host6 {
 }
 
 node gstest {
-    $infra_server = 'infra1.org'
-    include base
+    $infra_server = '0.0.0.0'
+    include test_module
 }
