@@ -1,5 +1,11 @@
 # removes all CentOS repos, inherits all other repos
-class repos::install::all inherits repos {
+class repos::install::all (
+  $offline = 'default' 
+)
+  
+  inherits repos {
+
+  unless $offline == offline {
 
     anchor { 'repos::install::all::begin': } ->
     class { '::repos::tools': } ->
@@ -17,4 +23,5 @@ class repos::install::all inherits repos {
     file { $file_name:
       ensure        => 'absent',
     }
+  }
 }
