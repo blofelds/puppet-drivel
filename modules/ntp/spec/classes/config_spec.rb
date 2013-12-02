@@ -5,7 +5,7 @@ describe 'ntp' do
     should include_class('ntp::config')
   end
 
-  it 'should inherit  ntp' do
+  it 'should inherit ntp' do
     should include_class('ntp')
   end
 
@@ -20,8 +20,16 @@ describe 'ntp' do
     )
   end
 
-  it 'should execute the ntpdate command' do
-    should contain_exec('update date')
+  context 'with $infra_server set to 0.0.0.' do
+    let(:paras) { {:infra_server => '0.0.0.0'} }
+ 
+    it 'should execute the ntpdate command' do
+      should contain_exec('update date').with(
+        'require' => 'File[ntp.conf]',
+ #      'command' => '/usr/sbin/ntpdate ${infra_server}',
+        'onlyif'  => '/etc/init.d/ntpd status | grep stopped',
+    )  
+    end
   end
 # need to add some lets to describe the parameters
 end
