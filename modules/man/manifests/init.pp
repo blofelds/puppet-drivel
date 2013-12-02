@@ -1,7 +1,12 @@
 # installs man pages
-class man {
+class man  (
+  $offline = 'default',
+) {
+
+  unless $offline == offline {
 
     package { 'man':
       ensure  => 'installed',
     }
+  }
 }
