@@ -10,7 +10,7 @@ describe 'inheritance' do
     should include_class('ntp::params')
   end
 end
-
+# this doesn't work
   context 'with "offline" set to "offline"' do
     let(:params) { {:offline => 'offline'} }
 
