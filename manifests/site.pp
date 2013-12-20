@@ -5,16 +5,6 @@ node ganglia {
     include hosts
 }
 
-node nettest {
-  $infra_server = localhost
-  include base
-}
-
-node vagtest {
-    $infra_server = 'infra1.org'
-    include base
-}
-
 node infra1 {
   # include base
     include git
@@ -42,4 +32,8 @@ node host6 {
 node gstest {
     $infra_server = '0.0.0.0'
     include base
+}
+
+node 'lab-box64.org' {
+  include users
 }
