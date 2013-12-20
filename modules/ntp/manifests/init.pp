@@ -7,6 +7,11 @@ class ntp (
 
   unless $offline == offline {
 
+    anchor { 'ntp::begin': } ->
+    class { '::ntp::install': } ->
+    class { '::ntp::config': } ~>
+    class { '::ntp::service': } ->
+    anchor { 'ntp::end': }
 
   }
 }

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'ntp' do
   it 'should include ntp::install class' do
-    should include_class('ntp::install')
+    should contain_class('ntp::install')
   end
 
   it 'should inherit ntp' do
