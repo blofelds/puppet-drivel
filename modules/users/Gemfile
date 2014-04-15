@@ -1,0 +1,4 @@
+gem 'guard-rspec'
+gem 'rspec-puppet', :path => '/Users/leper/.bundler/ruby/2.0.0/rspec-puppet-03e94422fb9b/lib/rspec-puppet'
+#, :git => 'https://github.com/rodjek/rspec-puppet.git'
+gem 'puppet'
