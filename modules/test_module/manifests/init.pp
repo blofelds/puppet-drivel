@@ -7,10 +7,11 @@ class test_module (
 
   unless $offline == offline {
 
-    file { 'test1':
+    file { 'file1':
         ensure  => file,
-        path    => '/var/tmp/test1file',
-        content => $testvar,
+        path    => '/var/tmp/testfile1',
+        content => template('test_module/file.erb'),
+        #content => $testvar,
   }
 
     notice ("this is the fully qualified notice line......${test_module::testvar} blah")

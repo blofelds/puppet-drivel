@@ -10,5 +10,8 @@ context 'with "secure_host" set to "true" ' do
   let(:params) { {:secure_host => 'true'} }
   it { should contain_user('root').with(
     'password' => 'securepass') }
+
+at_exit { RSpec::Puppet::Coverage.report! }
+
 end
 end
