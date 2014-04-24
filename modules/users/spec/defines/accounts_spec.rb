@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'users' do
+describe 'users::accounts' do
   describe 'specifying with default values' do
     let ( :title ) { 'testuser' }
 

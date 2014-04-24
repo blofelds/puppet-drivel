@@ -1,5 +1,11 @@
-class users::accounts {
+# add various users
+define users::accounts(
+$username = $title,
+$password = '!',
+) {
 
-  $useraccounts = hiera_hash('hiera_users')
-  create_resources('users', $useraccounts)
+  user { $title:
+      ensure  => 'present',
+      password  => $password,
+  }
 }

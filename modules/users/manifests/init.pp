@@ -1,12 +1,6 @@
-# add various users
-define users(
-$username = $title,
-$password = '!',
-) {
+# user accounts
+class users {
 
-  user { $title:
-      ensure  => 'present',
-      password  => $password,
-  }
+  $useraccounts = hiera_hash('hiera_users')
+  create_resources('users::accounts', $useraccounts)
 }
-# secure_host variable may need to be single quoted to pass the tests
