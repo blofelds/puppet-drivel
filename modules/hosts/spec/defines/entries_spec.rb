@@ -1,8 +1,13 @@
 require 'spec_helper'
 
-describe 'host::entries' do
+describe 'hosts::entries' do
+  describe 'specifying with default values' do
+    let ( :title ) { 'test' }
 
-  it do
-    should contain_class('hosts::entries')
+    it do
+      should contain_host( title ).with({
+        'ip' => '0.0.0.0'})
+    end
   end
+at_exit { RSpec::Puppet::Coverage.report! }
 end
