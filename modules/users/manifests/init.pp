@@ -1,17 +1,6 @@
-# add various users
-class users (
-  $secure_root_password = 'securepass',
-  $secure_host = 'true',
-) {
+# user accounts
+class users {
 
-  if $secure_host == 'true' {
-    user { 'root':
-      ensure     => 'present',
-      gid        => '0',
-      comment    => 'rooty root',
-      managehome => false,
-      password   => $secure_root_password,
-    }
-  }
+  $useraccounts = hiera_hash('hiera_users')
+  create_resources('users::accounts', $useraccounts)
 }
-# secure_host variable may need to be single quoted to pass the tests

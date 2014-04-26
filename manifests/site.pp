@@ -29,7 +29,7 @@ node host6 {
     include base::hadoop
 }
 
-node gstest {
+node 'gstest.org' {
     $infra_server = '0.0.0.0'
     include hosts
 }
