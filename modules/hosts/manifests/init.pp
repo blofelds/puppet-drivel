@@ -1,51 +1,6 @@
-# places hosts file
+# creates host resources
 class hosts {
 
-  host { 'ganglia.org':
-    ip => '192.168.1.102',
-  }
-
-  host { 'puppet.org':
-    ip => '192.168.1.108',
-  }
-
-  host { 'infra1.org':
-    ip => '192.168.1.116',
-  }
-
-  host { 'nagios.org':
-    ip => '192.168.1.73',
-  }
-
-  host { 'master.org':
-    ip => '192.168.1.113',
-  }
-
-  host { 'host1.org':
-    ip => '192.168.1.103',
-  }
-
-  host { 'host2.org':
-    ip => '192.168.1.104',
-  }
-
-  host { 'host3.org':
-    ip => '192.168.1.110',
-  }
-
-  host { 'host4.org':
-    ip => '192.168.1.109',
-  }
-
-  host { 'host5.org':
-    ip => '192.168.1.112',
-  }
-
-  host { 'host6.org':
-    ip => '192.168.1.111',
-  }
-}
-
-# places minimal hosts file
-class securehosts {
+  $hostentries = hiera_hash('hostentries')
+  create_resources('hosts::entries', $hostentries)
 }
