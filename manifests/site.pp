@@ -31,7 +31,7 @@ node host6 {
 
 node 'gstest.org' {
     $infra_server = '0.0.0.0'
-    include hosts
+    include ntp
 }
 
 node 'lab-box64.org' {

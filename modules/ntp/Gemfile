@@ -1,0 +1,8 @@
+gem 'rake'
+gem 'guard-rake'
+gem 'puppetlabs_spec_helper'
+gem 'rspec-puppet', :path => File.expand_path("/Users/leper/.bundler/ruby/2.0.0/rspec-puppet-03e94422fb9b", __FILE__)
+# the above shows how to load a gem from a file path, but points to a gem that has been previously downloaded and cached by bundler. it should really point to the location where the gemfile was downloaded manually. ie the /Library/Ruby/Gems/2.0.0/gems/* dir.
+
+gem 'puppet'
+

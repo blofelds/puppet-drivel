@@ -1,5 +1,5 @@
 # installs ntp packag
-class ntp::install inherits ntp {
+class ntp::install {
 
   package { 'ntp':
     ensure  => installed,
