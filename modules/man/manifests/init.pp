@@ -1,12 +1,7 @@
-# installs man pages
-class man  (
-  $offline = 'default',
-) {
+# man pages base class 
+class man{
 
-  unless $offline == offline {
-
-    package { 'man':
-      ensure  => 'installed',
-    }
-  }
+  anchor { 'man::begin': } ->  
+  class  { 'man::install': } ->  
+  anchor { 'man::end': }
 }
