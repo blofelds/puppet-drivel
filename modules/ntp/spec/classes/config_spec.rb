@@ -5,7 +5,7 @@ describe 'ntp' do
     it 'should contain the class ntp::config' do
       should contain_class('ntp::config')
     end
-  
+
     it 'should install the conf file' do
       should contain_file('ntp.conf').with(
         'ensure'  => 'present',
@@ -16,10 +16,11 @@ describe 'ntp' do
         'mode'    => '0400',
       )
     end
-  
-    context 'with $infra_server set to 0.0.0.' do
-      let(:paras) { {:infra_server => '0.0.0.0'} }
-   
+
+    context 'with $infra_server set to 0.0.0.0' do
+      let(:params) {{ :infraserver  => '0.0.0.0',
+                      :update       => 'true' }}
+
       it 'should execute the ntpdate command' do
         should contain_exec('update date').with(
           'require' => 'File[ntp.conf]',

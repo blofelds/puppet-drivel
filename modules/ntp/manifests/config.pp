@@ -10,9 +10,11 @@ class ntp::config inherits ntp {
     mode    => '0400',
   }
 
-exec { 'update date':
-  require => File['ntp.conf'],
-  command => "/usr/sbin/ntpdate ${infra_server}",
-  onlyif  => '/etc/init.d/ntpd status | grep stopped',
+if $update  {
+  exec { 'update date':
+    require => File['ntp.conf'],
+    command => "/usr/sbin/ntpdate ${infra_server}",
+    onlyif  => '/etc/init.d/ntpd status | grep stopped',
+    }
   }
 }
