@@ -1,21 +1,9 @@
 # installs vmware adn restarts service
-class vmwaretools  (
-  $offline = 'default',
-) {
+class vmwaretools {
 
-  unless $offline == offline {
+  anchor { 'vmwaretools::begin': } ->
+  class { 'vmwaretools::package': } ->
+  class { 'vmwaretools::service': } ->
+  anchor { 'vmwaretools::end': }
 
-  if $::is_vagrant == false {
-    package { 'vmware-tools':
-        ensure  => 'installed',
-    }
-
-    service { 'vmware-tools':
-        ensure  => 'running',
-        require => Package['vmware-tools'],
-    }
-  }
-
-  else {}
-  }
 }

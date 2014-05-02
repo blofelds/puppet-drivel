@@ -4,7 +4,7 @@ class base {
     anchor { 'base::begin': } ->
     class { '::users': } ->
     class { '::hosts': } ->
-    class { '::repos::install::all': } ->
+    class { '::repos': } ->
     class { '::ntp': } ->
     class { '::vmwaretools': } ->
     class { '::man': } ->
