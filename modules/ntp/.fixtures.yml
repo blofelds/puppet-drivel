@@ -1,6 +1,4 @@
 fixtures:
-  repositories:
-    stdlib: '/Users/lepertoe/puppet/modules/ntp/spec/fixtures/modules/puppetlabs-stdlib'
-      #repo: '/Users/lepertoe/puppet/modules/ntp/spec/fixtures/modules/puppetlabs-stdlib'
   symlinks:
+    stdlib: "/Users/leper/puppet/modules/stdlib"
     ntp: "#{source_dir}"
