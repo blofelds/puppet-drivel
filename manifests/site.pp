@@ -1,4 +1,4 @@
-import 'base.pp'
+#import 'base.pp'
 
 node ganglia {
     $infra_server = 'infra1.org'
