@@ -1,4 +1,4 @@
-import 'base.pp'
+#import 'base.pp'
 
 node ganglia {
     $infra_server = 'infra1.org'
@@ -31,7 +31,7 @@ node host6 {
 
 node 'gstest.org' {
     $infra_server = '0.0.0.0'
-    include ntp
+    include base
 }
 
 node 'lab-box64.org' {

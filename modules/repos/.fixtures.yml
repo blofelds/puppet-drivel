@@ -1,0 +1,5 @@
+# this file attaches stdlib local uri to the test running in the cwd. no need for cloning!!
+fixtures:
+  symlinks:
+    stdlib: "/Users/leper/puppet/modules/stdlib"
+    repos: "#{source_dir}"
