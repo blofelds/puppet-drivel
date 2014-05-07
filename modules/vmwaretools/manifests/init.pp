@@ -1,9 +1,11 @@
 # installs vmware adn restarts service
-class vmwaretools {
+class vmwaretools (
+$service_ensure = 'running',
+) {
 
-  anchor { 'vmwaretools::begin': } ->
-  class { 'vmwaretools::package': } ->
-  class { 'vmwaretools::service': } ->
+  anchor { 'vmwaretools::begin': } ~>
+  class { 'vmwaretools::package': } ~>
+  class { 'vmwaretools::service': } ~>
   anchor { 'vmwaretools::end': }
 
 }

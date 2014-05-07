@@ -2,7 +2,7 @@
 class vmwaretools::service {
 
   service { 'vmware-tools':
-    ensure  => 'running',
+    ensure  => $vmwaretools::service_ensure,
     require => Package['vmware-tools'],
   }
 }

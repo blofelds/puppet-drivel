@@ -4,10 +4,9 @@ describe 'vmwaretools' do
   describe 'vmwaretools::service' do
 
     it do
-      should contain_service('vmware-tools').with({'ensure' => 'running',
-})
+      should contain_service('vmware-tools')
     end
-  end
 
+  end
 end
 
