@@ -2,6 +2,7 @@
 class git::install {
 
   package { 'git':
-    ensure => 'installed',
+    require => Class['base'],
+    ensure  => 'installed',
   }
 }
