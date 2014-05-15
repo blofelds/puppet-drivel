@@ -6,6 +6,7 @@ node ganglia {
 
 node infra1 {
   include base
+  include firewall
   include git
 }
 
