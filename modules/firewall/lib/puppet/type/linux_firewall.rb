@@ -9,7 +9,13 @@ Puppet::Type.newtype(:linux_firewall) do
 
   newparam(:name, :namevar => :true) do
 # this should probably be a property instead of a param
-    desc "The name of the rule"
+    desc "The name of the rule - stored in the rules comment field"
+    munge do |value|
+      value.downcase
+    end
+    def insync?(is)
+      is.downcase == should.downcase
+    end
   end
 
   newproperty(:source_ip) do

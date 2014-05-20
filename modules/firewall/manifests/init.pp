@@ -1,9 +1,9 @@
 class firewall {
 
-  firewall { 'resourceinstance1':
-#    name => 'testname',
-#    ensure => 'insync',
-    file => '/var/tmp/testproperty',
-    line => "bkjggkjg",
+  linux_firewall { 'resourceinstance1':
+    name => 'testname',
+#    ensure => 'present',
+    dest_ip => '10.2.2.2',
+    source_ip => '10.2.3.4',
   }
 }
