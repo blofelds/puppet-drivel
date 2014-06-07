@@ -6,24 +6,34 @@ Puppet::Type.type(:linux_firewall).provide(:myprovider) do
   commands :iptables => 'iptables'
 
   def get_rules_list
-    begin
-      output = iptables(['--list-rules', 'INPUT'])
-    rescue Puppet::ExecutionFailure => e
-      Puppet.debug("#get_rules_list had an error -> #{e.inspect}")
-      return nil
+    finding = nil
+  
+    proc = Proc.new do
+      begin
+        output = %x{iptables -S INPUT}
+      rescue Puppet::ExecutionFailure => e
+        Puppet.debug("#get_rules_list had an error -> #{e.inspect}")
+        return nil
+      end
+  
+      list = output.split("\n").each do |line|
+        if line =~ /-A/
+          finding = 1
+        end
+      end
+  
+    return finding
     end
-
-    rules_list = output.split("\n").sort
-    return nil if rules_list.first != /-A/
-    rules_list
+  
+    proc.call
   end
 
   def exists?
-    get_rules_list =~ nil
+    get_rules_list != nil
   end
 
   def destroy
-    iptables(['-F', nil])
+    iptables(['-F'])
   end
 
   def create
