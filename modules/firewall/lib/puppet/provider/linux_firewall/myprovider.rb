@@ -33,7 +33,7 @@ Puppet::Type.type(:linux_firewall).provide(:myprovider) do
   end
 
   def destroy
-    iptables(['-F'])
+    iptables(['-D', 'INPUT', '-s', resource[:source_ip], '-d', resource[:dest_ip], '-m', 'comment', '--comment', resource[:name], '-j', 'REJECT'])
   end
 
   def create
