@@ -10,7 +10,7 @@ Puppet::Type.type(:linux_firewall).provide(:myprovider) do
 
     proc = Proc.new do
       begin
-        output = %x{iptables -S INPUT}
+        output = iptables(['-S', 'INPUT'])
       rescue Puppet::ExecutionFailure => e
         Puppet.debug("#get_rules_list had an error -> #{e.inspect}")
         return nil
