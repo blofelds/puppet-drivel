@@ -1,4 +1,4 @@
 require 'spec_helper'
 
-describe 'firewall' do
+describe 'iptables' do
 end

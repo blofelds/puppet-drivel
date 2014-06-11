@@ -2,7 +2,7 @@
 #
 # Puppet Provider to drive iptables
  
-Puppet::Type.type(:linux_firewall).provide(:myprovider) do
+Puppet::Type.type(:linux_firewall).provide(:iptables) do
   commands :iptables => 'iptables'
 
   def get_rules_list
