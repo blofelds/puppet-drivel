@@ -7,6 +7,9 @@ Puppet::Type.type(:linux_firewall).provide(:myprovider) do
 
   def get_rules_list
     finding = nil
+    source = resource[:source_ip]
+    destin = resource[:dest_ip]
+    commen = resource[:name]
 
     proc = Proc.new do
       begin
@@ -15,10 +18,6 @@ Puppet::Type.type(:linux_firewall).provide(:myprovider) do
         Puppet.debug("#get_rules_list had an error -> #{e.inspect}")
         return nil
       end
-  
-      source = resource[:source_ip]
-      destin = resource[:dest_ip]
-      commen = resource[:name]
 
       list = output.split("\n").each do |line|
         if line =~ /#{source}.*#{destin}.*#{commen}/
