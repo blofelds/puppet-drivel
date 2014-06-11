@@ -7,7 +7,7 @@ Puppet::Type.type(:linux_firewall).provide(:myprovider) do
 
   def get_rules_list
     finding = nil
-  
+
     proc = Proc.new do
       begin
         output = %x{iptables -S INPUT}
@@ -16,8 +16,12 @@ Puppet::Type.type(:linux_firewall).provide(:myprovider) do
         return nil
       end
   
+      source = resource[:source_ip]
+      destin = resource[:dest_ip]
+      commen = resource[:name]
+
       list = output.split("\n").each do |line|
-        if line =~ /-A/
+        if line =~ /#{source}.*#{destin}.*#{commen}/
           finding = 1
         end
       end
@@ -39,7 +43,5 @@ Puppet::Type.type(:linux_firewall).provide(:myprovider) do
   def create
     iptables(['-A', 'INPUT', '-s', resource[:source_ip], '-d', resource[:dest_ip], '-m', 'comment', '--comment', resource[:name], '-j', 'REJECT'])
   end
-  
-
 
 end
