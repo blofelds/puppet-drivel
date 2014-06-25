@@ -10,13 +10,13 @@ describe provider_class do
       @resource =  Puppet::Type::Linux_firewall.new(
         {:name => 'rule1', :source_ip => '2.3.4.5/32', :dest_ip => '3.4.5.6/32'}
       )
-      @provider = provider_class.new(@resource)
     end
 
        it "destroys a rule that matches the resource instance's source, dest and name" do
 
-       @provider.destroy.should == '-D INPUT -s 2.3.4.5/32 -d 3.4.5.6/32 -m comment --comment name -j REJECT'
-
+        d = provider_class.new(@resource)
+        d.should_receive("iptables").with(["-D", "INPUT", "-s", "2.3.4.5/32", "-d", "3.4.5.6/32", "-m", "comment", "--comment", "rule1", "-j", "REJECT"])
+        d.destroy
      end
 
   end
